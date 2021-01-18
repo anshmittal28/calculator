@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        body{
+    padding:0px;
+    margin:0px;
+    background-color:#c4ff77    ;
+    
+}
+header{
+    font-size:70px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+#box{
+    background-color: black;
+    height:80vh;
+    width: 20%;
+    margin:10px auto 10px auto;
+        border:2px solid black;
+    border-radius: 11px;
+}
+.num{
+    /* border:1px solid black; */
+    /* font-size:70px; */
+}
+#history{
+    /* margin-top:50px; */
+    text-align: right;
+    margin:40px 10px 0px 0px;
+    font-size: 30px;
+    color: darkgray;
+}
+#result{
+    /* margin-top:80px; */
+    text-align: right;
+    margin:30px 10px 0px 0px;
+    font-size: 30px;
+    color: white;
+}
+.blank,.operator,.num{
+    width:66px;
+    height:62px;
+    position:relative;
+    float:left;
+    border-radius: 122px;
+    border-width:0px;
+    font-weight:bold;
+    background-color: #c7baba66;
+}
+.num{
+    color:white;
+}
+#clear{
+    background-color: #d2c1c1;
+    font-size: -webkit-xxx-large;
+}
+#a2,#a3,#a4,#a5,#a6{
+     color: white ; 
+    font-size:20px;
+}
+#backspace:hover,#a1:hover,#a2:hover,#a3:hover,#a4:hover,#a5:hover,#a6:hover,.num:hover,#clear:hover{
+cursor: pointer;
+}
+button{
+    outline:0;
+}
+#backspace,#a1{
+    background-color: #d2c1c1;
+}
+.operator{
+    background-color: tomato;
+}
+
+    </style>
+</head>
+<body>
+    <header id="header">Calculator</header>
+    <div id="box">
+        <div id="history">0</div>
+        <div id="result">0</div><hr>
+        <div id="k1">
+        <button class="operator" id="clear">C</button>
+        <button class="operator" id="backspace">CE</button>
+        <button class="operator" id="a1">%</button>
+        <button class="operator" id="a2">&#247</button>
+        <button class="num" id="7">7</button>
+        <button class="num" id="8">8</button>
+        <button class="num" id="9">9</button>
+        <button class="operator" id="a3">&times;</button>
+        <button class="num" id="4">4</button>
+        <button class="num" id="5">5</button>
+        <button class="num" id="6">6</button>
+        <button class="operator" id="a4">-</button>
+        <button class="num" id="1">1</button>
+        <button class="num" id="2">2</button>
+        <button class="num" id="3">3</button>
+        <button class="operator" id="a5">+</button>
+        <button class="num" id="a0">00</button>
+        <button class="num" id="0">0</button>
+        <button class="num" id="a.1">.</button>
+        <button class="operator" id="a6">=</button>
+       </div> 
+    </div>
+</body>
+<!-- <script src="logic.js"></script> -->
+<script>
+    // let numberr;
+let div_result=document.getElementById('result');
+let button_clear=document.getElementById('clear');
+let button_backspace=document.getElementById('backspace');
+let button_percentage=document.getElementById('a1');
+let button_divide=document.getElementById('a2');
+let button_equal=document.getElementById('a6');
+let button_mul=document.getElementById('a3');
+let button_history=document.getElementById('history');
+let button_add=document.getElementById('a5');
+let button_sub=document.getElementById('a4');
+
+
+button_mul.addEventListener('click',function(){star();})
+function star()
+{
+    div_result.innerHTML=div_result.innerHTML+'*';
+}
+
+
+button_sub.addEventListener('click',function(){sub();})
+function sub()
+{
+    div_result.innerHTML=div_result.innerHTML+'-';
+}
+
+
+button_add.addEventListener('click',function(){addi();})
+function addi()
+{
+    div_result.innerHTML=div_result.innerHTML+'+';
+}
+
+
+button_divide.addEventListener('click',function(){divi();})
+function divi()
+{
+    div_result.innerHTML=div_result.innerHTML+'/';
+}
+button_equal.addEventListener('click',function(){eqq();})
+function eqq()
+{
+    button_history.innerHTML=div_result.innerHTML;
+    console.log(button_history.innerHTML);
+    div_result.innerHTML=eval(button_history.innerHTML);
+}
+
+
+
+
+
+// clear buuton
+button_clear.addEventListener('click',function(){cl();});
+function cl()
+{
+    div_result.innerHTML='0';
+    button_history.innerHTML='0';
+}
+
+// backspace
+button_backspace.addEventListener('click',function(){backspace();})
+function backspace()
+{
+    div_result.innerHTML=Math.floor(div_result.innerHTML/10);
+}
+
+
+// % button 
+button_percentage.addEventListener('click',function(){per();})
+function per(){
+if(div_result.innerHTML==0)
+{
+    div_result.innerHTML="ERROR";
+}
+else{
+let number=div_result.innerHTML;
+
+button_history.innerHTML=number+'%';
+div_result.innerHTML=number/100;
+}
+}
+
+// button_mul.addEventListener('click',function(){mult();})
+// function mult(){
+//     let mul=1;
+//     if(div_result.innerHTML==0)
+//     {
+//         div_result.innerHTML="ERROR";
+//     }
+//     else{
+//         let a=div_result.innerHTML;
+//         // console.log(a);
+//         // mul=mul*a;
+//         // console.log(mul);
+//         button_history.innerHTML=a;
+//         div_result.innerHTML="*";
+//         button_history.innerHTML=button_history.innerHTML+'*';
+//         // console.log(div_result.innerHTML);        
+//         button_equal.addEventListener('click',function(){eq();})
+//         function eq()
+//         {
+            
+//             // let k=div_result.innerHTML;
+//             // console.log(k);
+//             // mul=mul*k;
+//             // console.log(mul);
+//             button_history.innerHTML=button_history.innerHTML+div_result.innerHTML;
+//             console.log(div_result.innerHTML);            // console.log(ku);
+//             div_result.innerHTML=div_result.innerHTML*a;
+
+//         // numberr=0;
+//         }
+   
+//     }
+// }
+
+// {
+let num0=document.getElementById('0');
+num0.addEventListener('click',function(){fu0();})
+function fu0()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num0.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num0.innerHTML;
+        else    
+    div_result.innerHTML=div_result.innerHTML+num0.innerHTML;}
+}
+
+let num1=document.getElementById('1');
+num1.addEventListener('click',function(){fu1();})
+function fu1()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num1.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num1.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num1.innerHTML;
+}}
+
+let num2=document.getElementById('2');
+num2.addEventListener('click',function(){fu2();})
+function fu2()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num2.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num2.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num2.innerHTML;
+}}
+
+let num3=document.getElementById('3');
+num3.addEventListener('click',function(){fu3();})
+function fu3()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num3.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num3.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num3.innerHTML;
+}}
+
+let num4=document.getElementById('4');
+num4.addEventListener('click',function(){fu4();})
+function fu4()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num4.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num4.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num4.innerHTML;
+}
+}
+
+let num5=document.getElementById('5');
+num5.addEventListener('click',function(){fu5();})
+function fu5()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num5.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num5.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num5.innerHTML;
+}}
+
+let num6=document.getElementById('6');
+num6.addEventListener('click',function(){fu6();})
+function fu6()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num6.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num6.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num6.innerHTML;
+}}
+
+let num7=document.getElementById('7');
+num7.addEventListener('click',function(){fu7();})
+function fu7()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num7.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num7.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num7.innerHTML;
+}}
+
+let num8=document.getElementById('8');
+num8.addEventListener('click',function(){fu8();})
+function fu8()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num8.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num8.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num8.innerHTML;
+}}
+
+let num9=document.getElementById('9');
+num9.addEventListener('click',function(){fu9();})
+function fu9()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num9.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num9.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num9.innerHTML;
+} }
+
+
+let num00=document.getElementById('a0');
+num00.addEventListener('click',function(){fu00();})
+function fu00()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=num00.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=num00.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+num00.innerHTML;
+} }
+
+let point=document.getElementById('a.1');
+point.addEventListener('click',function(){fp00();})
+function fp00()
+{
+    if(div_result.innerHTML=='/'||div_result.innerHTML=='*'||div_result.innerHTML=='-'||div_result.innerHTML=='+')
+    {
+        div_result.innerHTML=point.innerHTML;
+    }
+    else{
+        if(div_result.innerHTML=='0')
+        div_result.innerHTML=point.innerHTML;
+        else 
+    div_result.innerHTML=div_result.innerHTML+point.innerHTML;
+} }
+</script>
+</html>
